@@ -1,15 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import NASA from "../apps/NASA";
+import Ticketmaster from '../apps/Ticketmaster'
+import Weather from '../apps/Weather'
+import Geolocation from "../concepts/Geolocation";
 
 const Home = () => {
     return (
         <div className="main">
             <div className="mainDiv">
-
-                <h1>72 Hour Challenge</h1>
-                <h2>Develop Branch</h2>
-                <h3>Allison's Branch</h3>
-
+            <Geolocation/>
+      <NASA/>
+      <Weather/>
+      <Ticketmaster/>
             </div>
         </div>
     );
