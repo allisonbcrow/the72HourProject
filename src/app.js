@@ -7,6 +7,7 @@ import Sidebar from './components/site/Sidebar'
 import NASA from './components/apps/NASA'
 import Ticketmaster from './components/apps/Ticketmaster'
 import Weather from './components/apps/Weather'
+import Geolocation from './components/concepts/Geolocation';
 import {
   BrowserRouter as Router,
 } from 'react-router-dom';
@@ -15,6 +16,7 @@ function App() {
   return (
     <div>
       <Header/>
+      <Geolocation/>
       <NASA/>
       <Weather/>
       <Ticketmaster/>
