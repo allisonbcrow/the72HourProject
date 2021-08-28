@@ -5,7 +5,9 @@ const Ticketmaster = () => {
     const [lat, setLat] = useState(null);
     const [lng, setLng] = useState(null);
     const [status, setStatus] = useState(null);
+    const [eventList, setEventList] = useState([]);
     const latlon= lat + lng;
+
 
     const getLocation = () => {
         if (!navigator.geolocation) {
@@ -22,16 +24,15 @@ const Ticketmaster = () => {
         }
     }
 
-    fetch('https://app.ticketmaster.com/discovery/v2/events.json?apikey=0ps2AGABt3YGhVyPttfk6QbywhTcsVUT')
-    .then(response => response.json())
-    .then(data => console.log(data));
-    // .then(function(response) {
-    //     return response.json();
-    // })
-    // .then(function(json) {
-    //     const eventItems = json.results;
-    // })
-
+    
+    
+useEffect(() => {
+    if (lat && lng ){
+        fetch('https://app.ticketmaster.com/discovery/v2/events.json?apikey=0ps2AGABt3YGhVyPttfk6QbywhTcsVUT&latlong='+`${lat},${lng}`)
+        .then(response => response.json())
+        .then(data => setEventList(data._embedded.events));
+    }
+}, [lat, lng]);
     return(
         <div className="App">
             <h1>Coordinates</h1>
@@ -42,7 +43,7 @@ const Ticketmaster = () => {
             <br />
             <br />
             <div><h1>Events Near You:</h1>
-             {/* <p> {data}</p>  */}
+               {eventList.map(event => <div><h1>{event.name}</h1></div>)}   
              <br />
              <br />
              <br />
