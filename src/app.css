@@ -164,7 +164,7 @@ ul {
   
   .sidebar {
     display: flex; 
-    background-color: black;
+    /* background-color: black; */
     margin-top: 10px;
   }
 

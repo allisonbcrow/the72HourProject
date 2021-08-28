@@ -1,7 +1,3 @@
-import React, { useState, useEffect } from 'react';
-
-
-
 function Weather(props) {
   const [localweather, setLocalweather] = useState('');
   const [query, setQuery] = useState('');
@@ -64,3 +60,4 @@ const convert = () => {
 }
 
   export default Weather;
+
