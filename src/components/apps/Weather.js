@@ -1,33 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
 
+
 function Weather(props) {
   const [localweather, setLocalweather] = useState('');
   const [query, setQuery] = useState('');
-  const [temp, setTemp] = useState('');
-  const [unit, setUnit] = useState('');
+  const [temp, setTemp] = useState(0);
+  const [unit, setUnit] = useState('C');
+  let [responseObj, setResponseObj] = useState({});
 
    
-
-
-  const oppositeUnit = unit === "C" ? "F" : "C";
-
-
-const convert = () => {
-  if (unit === "C") {
-    const temp = localweather * 1.8 + 32;
-    setTemp(Math.round(temp));
-    setUnit(oppositeUnit);
-  }
-
-
-  if (unit === "F") {
-    const temp = ((localweather - 32) * 5) / 9;
-    setTemp(Math.round(temp));
-    setUnit(oppositeUnit);
-  }
-};
-
 
 useEffect(() => {
   if (navigator.geolocation) {
@@ -38,21 +20,43 @@ useEffect(() => {
       console.log(lon);
       const API_KEY = '3b66b0c3c2f2e8c4e63630359492b5bf';
       fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`)
-        .then(response => response.json())
-        .then(data => console.log(props.main.temp));
-      })
-  }
-},[])
+      .then(response => response.json())
+       .then(response => {
+          //  setResponseObj(response)
+           console.log(response)
+           setTemp(response.main.temp)
+       })
+})}}
+,[])
 
+            
+
+const oppositeUnit = unit === "C" ? "F" : "C";
+
+ 
+
+const convert = () => {
+  if (unit === "C") {
+    setTemp(((temp * 9/5) + 32).toFixed(0));
+    setUnit(oppositeUnit);
+  }
+
+
+
+
+  if (unit === "F") {
+    setTemp(((temp - 32) *  5/9).toFixed(0));
+    setUnit(oppositeUnit);
+  }
+};
 
 
     return (
-      <div>
+      <div id="weather">
 
-
-        <p>Temperature!{Math.round(props.responseObj.main.temp)} {props.unit}</p>
-        <button onClick={convert()}>Convert to {props.oppositeUnit}</button>
-        <span className="value">{props.temp}{props.unit}</span>
+        <p>Your Temperature!</p>
+        <button onClick={convert}>Convert to °{oppositeUnit}</button>
+        <span className="value">{(Math.round(temp))}°{unit}</span>
 
       </div>
 
