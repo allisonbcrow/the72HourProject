@@ -1,3 +1,5 @@
+import React, {useState, useEffect} from 'react';
+
 function Weather(props) {
   const [localweather, setLocalweather] = useState('');
   const [query, setQuery] = useState('');
@@ -48,9 +50,9 @@ const convert = () => {
 
 
     return (
-      <div id="weather">
+      <div id="app">
 
-        <p>Your Temperature!</p>
+        <h1>Your Temperature!</h1>
         <button onClick={convert}>Convert to °{oppositeUnit}</button>
         <span className="value">{(Math.round(temp))}°{unit}</span>
 

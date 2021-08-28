@@ -7,11 +7,9 @@ const Header = () => {
             <Navbar className="header">
                 <NavbarBrand href="/"></NavbarBrand>
                 <Nav className="ml-auto" navbar>
-                    <NavItem>
-                        <NavLink href="">
-                            
-                        </NavLink>
-                    </NavItem>
+                   
+                            <h1>Welcome!</h1>
+                        
                 </Nav>
             </Navbar>
         </header>

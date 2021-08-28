@@ -1,13 +1,16 @@
-.App {
-
-  text-align: center;
-}
 
 /* body */
 body {
   padding: 15px;
-  /* color: white; */
+  background-color: hotpink;
   font: Belleza;
+}
+
+header {
+  background-color: black;
+  color: white;
+  margin-bottom: 10px;
+  padding: 2em;
 }
 
 /* footer */
@@ -24,8 +27,8 @@ footer p {
 
 /* main */
 .main {
-  background-color: white;
-  color: black;
+  /* background-color: black; */
+  color: white;
   height: 100%;
   min-height: 100%;
 }
@@ -38,7 +41,7 @@ footer p {
 
 .sidebar {
   display: flex;
-  /* background-color: black; */
+  /* background-color: white; */
   margin-top: 10px;
 }
 
@@ -47,17 +50,22 @@ ul {
 }
 
 /* Sidebar */
+
+.sidebar {
+  color: black;
+  padding-right: 2em;
+}
 .sidebar-list-styling {
   padding-left: 50px;
   padding-top: 15px;
   width: 20%;
-  background-color: #53565a;
+  /* background-color: black !important; */
   color: white;
 }
 
 .sidebar-list a {
-  color: white;
-  padding: 0;
+  /* color: black; */
+  margin-left: -2em;
 }
 
 .sidebar-route {
@@ -81,12 +89,8 @@ ul {
   margin-top: 0.8em !important;
 }
 
-    text-align: center;
-    align-content: center;
-  }
-  
 
- #weather p {
+ #app p {
    color: black;
    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
    font-weight: bold;
@@ -95,7 +99,7 @@ ul {
    margin-bottom: -3px;
  }
 
- #weather button {
+ #app button {
   margin-top: 1em;
   margin-bottom: 3em;
   margin-left: 2em;
@@ -108,12 +112,12 @@ ul {
   padding: 6px 10px;
 }
 
-#weather button:hover {
+#app button:hover {
   background-color: black;
   color: hotpink;
 }
 
-#weather span {
+#app span {
   color: black;
   font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
   font-weight: bold;
@@ -122,8 +126,26 @@ ul {
   font-size: 2em;
 }
 
+#app h2 {
+  font-size: 1em;
+}
 
+#app img {
+  margin-left: 2.5em;
+  margin-bottom: 4em;
 
+}
+
+#app h1 {
+  padding-top: 2em;
+  font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+  font-weight: bold;
+  font-variant: small-caps;
+}
+
+#app p {
+  font-size: 1em;
+}
 
   /* body */
   body {

@@ -34,22 +34,19 @@ useEffect(() => {
     }
 }, [lat, lng]);
     return(
-        <div className="App">
-            <h1>Coordinates</h1>
-            <button onClick={getLocation}>Get Location</button>
+        <div id="app">
+            <h1>TicketMaster:</h1>
+            <button onClick={getLocation}>See Events Near You</button>
             <p>{status}</p>
-            {lat && <p>Latitude: {lat}</p>}
-            {lng && <p>Longitude: {lng}</p>}
             <br />
-            <br />
-            <div><h1>Events Near You:</h1>
-               {eventList.map(event => <div><h1>{event.name}</h1></div>)}   
+            <div><h1></h1>
+               {eventList.map(event => <div><h2>{event.name}</h2></div>)}   
              <br />
              <br />
              <br />
-             <div><h4>See your events on the map:</h4></div>
+             <div><h4></h4></div>
             </div>
-        </div>
+        </div> 
     );
 }
 

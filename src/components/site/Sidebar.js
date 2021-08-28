@@ -17,8 +17,8 @@ const Sidebar = (props) => {
             <ul className="sidebar-list list-unstyled">
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/NASA">NASA</Link></li>
-                <li><Link to="/Ticketmaster">Ticketmaster</Link></li>
                 <li><Link to="/Weather">Weather</Link></li>
+                <li><Link to="/Ticketmaster">Ticketmaster</Link></li>
             </ul>
         </div>
         <div className="sidebar-route">
@@ -31,28 +31,6 @@ const Sidebar = (props) => {
             </Switch>
         </div>
     </div>
-)
+)}
 
 export default Sidebar;
-
-                <ul className="sidebar-list list-unstyled">
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/NASA">NASA</Link></li>
-                     <li><Link to="/Ticketmaster">Ticketmaster</Link></li>
-                     <li><Link to="/Weather">Weather</Link></li>
-                 </ul>
-             </div>
-         <div className="sidebar-route">
-             <Switch>
-                     {/* <Route exact path="/home"><Home /></Route>*/}
-                     <Route exact path="/"><Home /></Route>
-                     <Route exact path="/NASA"><NASA/></Route>
-                     <Route exact path="/Ticketmaster"><Ticketmaster/></Route>
-                     <Route exact path="/Weather"><Weather/></Route> 
-                </Switch>
-            </div>
-    </div> );
-}
- 
-export default Sidebar;
-

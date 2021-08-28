@@ -42,9 +42,11 @@ const NASA = (props) => {
     }
   };
 
+
   return (
-    <div className="App">
-        <button onClick={getLocation}>Get My Location</button>
+    <div id="app">
+      <h1>Satellite Image</h1>
+        <button onClick={getLocation}>Get My Location</button> <br />
       <img style={{ height: 190, width: 190 }} src={NASAImg} />
       <p>{status}</p>
       {lat && <p>Latitude: {lat}</p>}
