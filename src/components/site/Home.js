@@ -9,9 +9,11 @@ const Home = () => {
         <div className="main">
             <div className="mainDiv">
             {/* <Geolocation/> */}
+
       <NASA/>
       <Weather/>
       <Ticketmaster/>
+
             </div>
         </div>
     );
