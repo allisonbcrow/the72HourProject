@@ -1,102 +1,66 @@
-import React, { useState } from 'react';
-
-const baseURL = 'api.openweathermap.org/data/2.5/weather?;';
-const key = '3b66b0c3c2f2e8c4e63630359492b5bf';
+import React, { useState, useEffect } from 'react';
 
 
-const Weather = () => {
-  const [latitude, setlatitude] = useState('');
-  const [longitude, setlongitude] = useState('');
-  const [city, setcity] = useState('');
-  const [temperature, setTemperature] = useState([]);
 
+function Weather(props) {
+  const [localweather, setLocalweather] = useState('');
+  const [query, setQuery] = useState('');
+  const [temp, setTemp] = useState(0);
+  const [unit, setUnit] = useState('C');
+  let [responseObj, setResponseObj] = useState({});
 
-  const fetchResults = () => {
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=indianapolis&appid=${key}`;
-    // let url = `${baseURL}at=${latitude}&lon=${longitude}&appid=${key}&units=metric`
-    url = latitude ? url + `&latitude=${latitude}` : url;
-    url = longitude ? url + `&longitude=${longitude}` : url;
+   
+
+useEffect(() => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const lon = position.coords.longitude;
+      const lat = position.coords.latitude;
+      console.log(lat);
+      console.log(lon);
+      const API_KEY = '3b66b0c3c2f2e8c4e63630359492b5bf';
+      fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`)
+      .then(response => response.json())
+       .then(response => {
+          //  setResponseObj(response)
+           console.log(response)
+           setTemp(response.main.temp)
+       })
+})}}
+,[])
+
+            
+
+const oppositeUnit = unit === "C" ? "F" : "C";
+
+ 
+
+const convert = () => {
+  if (unit === "C") {
+    setTemp(((temp * 9/5) + 32).toFixed(0));
+    setUnit(oppositeUnit);
   }
 
-  let fetchURL = async () => {
-    let response = await fetch(baseURL);
-    let data = await response.json();
-    setTemperature(data.main.temp);
-  };
 
-          return (
-            <div className="main">
-              <div className="mainDiv">
-                <div className="weather-item">{temperature} </div>
-              </div>
-            </div>
-          )
+
+
+  if (unit === "F") {
+    setTemp(((temp - 32) *  5/9).toFixed(0));
+    setUnit(oppositeUnit);
+  }
 };
 
 
-// getPosition = () => {
-//   return new Promise(function (resolve, reject) {
-//     navigator.geolocation.getCurrentPosition(resolve, reject);
-//   });
-// }
-// getWeather = async (latitude, longitude) => {
-//   let WEATHER_API_KEY= '3b66b0c3c2f2e8c4e63630359492b5bf';
-//   const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?;at=${latitude}&lon=${longitude}&appid=${WEATHER_API_KEY}&units=metric`);
-//   const data = await api_call.json();
+    return (
+      <div id="weather">
 
+        <p>Your Temperature!</p>
+        <button onClick={convert}>Convert to °{oppositeUnit}</button>
+        <span className="value">{(Math.round(temp))}°{unit}</span>
 
-//   this.setState({
-//     lat: latitude,
-//     lon: longitude,
-//     city: data.name,
-//     temperatureC: Math.round(data.main.temp),
-//     temperatureF: Math.round((data.main.temp) * 1.8 + 32),
-//     icon: data.weather[0].icon,  
-//   })
-// }
+      </div>
 
-// componentDidMount() {
-//   this.getPosition()
-//   .then((position) => {
-//     this.getWeather(position.coords.latitude, position.coords.longitude)
-//   })
-//   .catch((err) => {
-//     this.setState({ errorMessage: err.message });
-//   });
+    )
+}
 
-//   this.timerID = setInterval(
-//     () => 
-//     this.getWeather(this.state.lat, this.state.lon),
-//     60000
-//   );
-// }
-
-// componentWillUnmount() {
-//   clearInterval(this.timerID);
-// }
-
-// render() {
-//   const { city, temperatureC, temperatureF, icon} = this.state;
-//    if (city) {
-//      return (
-//     <div className="App">
-//       <div className="weather-box">
-//         <div className="weather-item">{city}</div>
-//         <div className="weather-item">{temperatureC} &deg;C <span className="slash">/</span> {temperatureF} &deg;F</div>
-//         <div>
-//           <img className="weather-icon" src={`http://openweathermap.org/img/w/${icon}.png`} alt="weather icon"/>
-//       </div>
-//     </div>
-//     </div>
-//      );
-//    }
-//   else {
-//     return (
-//       <div>Loading...</div>
-//     )
-//   }}}
-
-
-
-
-export default Weather;
+  export default Weather;
